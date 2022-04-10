@@ -6,7 +6,6 @@ export default async (name: string) => {
     `${configService.apiUrl}/search?q=${name}&index=0&limit=15&output=jsonp`
   )
     .then(function (response) {
-      console.log(response);
       return response.json();
     })
     .then(function (json) {

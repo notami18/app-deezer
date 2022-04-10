@@ -1,25 +1,31 @@
 <template>
   <header>
-    <SearchArtist />
+    <SearchArtist @busqueda="callback" />
+    <CardInfo :info="obj" />
+    <!-- <div>{{ obj }}</div> -->
   </header>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue"
+import { reactive } from "vue"
 import service from "./services/search"
-import HelloWorld from './components/HelloWorld.vue'
 import SearchArtist from "./components/SearchArtist.vue";
+import CardInfo from "./components/CardInfo.vue";
 
-// onMounted(async () => console.log(await service("eminen")))
+
+const obj = reactive([] as any[]);
+
+async function callback(name: string) {
+  obj.push(await service(name));
+  debugger
+}
+
 </script>
 
 <style>
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* text-align: center;
-  color: #2c3e50;
-  margin-top: 60px; */
 }
 :root {
   --white: #ffffff;
